@@ -19,12 +19,13 @@ export class RegisterComponent implements OnInit {
     mobile: new FormControl("",[Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('[0-9]*')]),
     gender: new FormControl("",[Validators.required]),
     pwd: new FormControl("",[Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-    rpwd: new FormControl("",[Validators.required, Validators.minLength(8), Validators.maxLength(20)])
+    rpwd: new FormControl("")
   });
 
   registerSubmit(){
     if(this.PWD.value == this.RPWD.value){
-      console.log('Submitted');
+      console.log(this.registerForm.valid);
+      this.repeatPassword = 'none';
     }else{
       this.repeatPassword = 'inline';
     }
