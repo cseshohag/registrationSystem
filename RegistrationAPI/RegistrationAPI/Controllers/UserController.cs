@@ -13,5 +13,10 @@ namespace RegistrationAPI.Controllers
         {
             this._config = config;
         }
+
+        public IActionResult Create()
+        {
+            return Ok("Success form create method!");
+        }
     }
 }
