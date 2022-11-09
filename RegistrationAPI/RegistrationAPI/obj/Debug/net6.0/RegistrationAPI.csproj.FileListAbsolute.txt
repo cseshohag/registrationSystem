@@ -25,3 +25,7 @@ H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\obj\D
 H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\obj\Debug\net6.0\RegistrationAPI.pdb
 H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\obj\Debug\net6.0\RegistrationAPI.genruntimeconfig.cache
 H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\obj\Debug\net6.0\ref\RegistrationAPI.dll
+H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\bin\Debug\net6.0\System.Web.Cors.dll
+H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+H:\Programming\Projects\registrationSystem\RegistrationAPI\RegistrationAPI\bin\Debug\net6.0\Newtonsoft.Json.dll

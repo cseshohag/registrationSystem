@@ -8,9 +8,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  baseServerUrl = "https://localhost:7258/api/";
+  baseServerUrl = "http://localhost:56679/api/";
 
   registerUser(){
-    return this.http.post(this.baseServerUrl + "User",null);
+    return this.http.post(this.baseServerUrl + "User/CreateUser",null,{responseType: "text"});
   }
 }

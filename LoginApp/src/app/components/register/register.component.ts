@@ -23,14 +23,14 @@ export class RegisterComponent implements OnInit {
     rpwd: new FormControl("")
   });
 
-  registerSubmit(){
+  registerSubmited(){
     if(this.PWD.value == this.RPWD.value){
       console.log(this.registerForm.valid);
       this.repeatPassword = 'none';
 
       this.authService.registerUser().subscribe(response => {
         console.log(response);
-      });
+      })
     }else{
       this.repeatPassword = 'inline';
     }
