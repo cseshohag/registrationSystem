@@ -31,5 +31,16 @@ namespace RegistrationAPI.Controllers
             _userContext.SaveChanges();
             return Ok("Success");
         }
+
+        [HttpPost("LoginUser")]
+        public IActionResult Login(Login loginUser)
+        {
+            var userAvailable = _userContext.Users.Where(x=>x.Email == loginUser.Email && x.Password == loginUser.Password).FirstOrDefault();
+            if(userAvailable != null)
+            {
+                return Ok("Success");
+            }
+            return Ok("Failed");
+        }
     }
 }
