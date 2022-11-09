@@ -27,4 +27,16 @@ export class AuthService {
       responseType: "text"
     });
   }
+
+  loginUser(loginUser: Array<String | null | undefined>){
+    return this.http.post(
+      this.baseServerUrl + "User/LoginUser",
+      {
+      Email: loginUser[0],
+      Password: loginUser[1]
+    },
+    {
+      responseType: "text"
+    });
+  }
 }

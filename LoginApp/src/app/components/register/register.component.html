@@ -54,13 +54,13 @@
     <div class="row">
         <div class="col mb-3">
             <label for="pwd" class="form-label">Password</label>
-            <input type="password" name="pwd" id="pwd" class="form-contrl" formControlName="pwd">
+            <input type="password" name="pwd" id="pwd" class="form-control" formControlName="pwd">
             <div class="form-text text-danger" *ngIf="PWD.errors?.['required'] && (PWD.dirty || PWD.touched)">Password is required!</div>
             <div class="form-text text-danger" *ngIf="(PWD.errors?.['minlength'] || PWD.errors?.['maxlength']) && (PWD.touched || PWD.dirty)">Password should be minimum 8 characters and maximum 20 characters!</div>
         </div>
         <div class="col mb-3">
             <label for="rpwd" class="form-label">Repeat Password</label>
-            <input type="password" name="rpwd" id="rpwd" class="form-contrl" formControlName="rpwd">
+            <input type="password" name="rpwd" id="rpwd" class="form-control" formControlName="rpwd">
             <div class="form-text text-danger" *ngIf="RPWD.errors?.['required'] && (RPWD.dirty || RPWD.touched)">Repeat Password is required!</div>
             <div class="form-text text-danger" [ngStyle]="{'display': repeatPassword}">Repeat password doesn't match!</div>
         </div>
