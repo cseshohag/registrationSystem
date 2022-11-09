@@ -9,10 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   repeatPassword: string='none';
+  displayMsg : string='';
+  isAccountCreated: boolean = false;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
+
+  
   registerForm = new FormGroup({
     firstname: new FormControl("",[Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z].*')]),
     lastname: new FormControl("",[Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z].*')]),
@@ -28,8 +32,24 @@ export class RegisterComponent implements OnInit {
       console.log(this.registerForm.valid);
       this.repeatPassword = 'none';
 
-      this.authService.registerUser().subscribe(response => {
-        console.log(response);
+      this.authService.registerUser([
+        this.registerForm.value.firstname,
+        this.registerForm.value.lastname,
+        this.registerForm.value.email,
+        this.registerForm.value.mobile,
+        this.registerForm.value.gender,
+        this.registerForm.value.pwd
+      ]).subscribe(response => {
+        if(response == "Success"){
+          this.displayMsg = 'Account created successfully!';
+          this.isAccountCreated = true;
+        } else if (response == 'AlreadyExist'){          
+          this.displayMsg = 'Account already exist. Try with another email!';
+          this.isAccountCreated = false;
+        }else{
+          this.displayMsg = 'Something went wrong.'          
+          this.isAccountCreated = false;
+        }
       })
     }else{
       this.repeatPassword = 'inline';
