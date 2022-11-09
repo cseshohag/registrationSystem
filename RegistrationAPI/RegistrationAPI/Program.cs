@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using RegistrationAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddCors(option =>
     });
 });
 
+builder.Services.AddDbContext<UserContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbConnection")));
 //builder.Services.AddCors((setup) =>
 //{
 //    setup.AddPolicy("default", (options) =>
