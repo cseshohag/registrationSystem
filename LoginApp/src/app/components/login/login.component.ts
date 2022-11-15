@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginAuth: AuthService) { }
+  constructor(private loginAuth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -28,10 +29,13 @@ export class LoginComponent implements OnInit {
         alert('Login failed!');
       }else{
         this.isUserValid = true;
-        alert('Loigin Successfull!');
+        this.loginAuth.setToken(response);
+        this.router.navigateByUrl('home');
       }
     });
    }
+
+   
    get Email(): FormControl{
     return this.loginForm.get('email') as FormControl;
    }
