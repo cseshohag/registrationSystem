@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     ]).subscribe(response =>{
       if(response == "Failed"){
         this.isUserValid = false;
-        alert('Login failed!');
+        alert('User Name or Password Incorrect!');
       }else{
         this.isUserValid = true;
         this.loginAuth.setToken(response);
