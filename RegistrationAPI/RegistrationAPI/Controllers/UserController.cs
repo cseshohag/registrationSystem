@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationAPI.Models;
@@ -19,6 +20,7 @@ namespace RegistrationAPI.Controllers
             this._userContext = userContext;
         }
 
+        [AllowAnonymous]
         [HttpPost("CreateUser")]
         public IActionResult Create(User user)
         {
@@ -32,15 +34,40 @@ namespace RegistrationAPI.Controllers
             return Ok("Success");
         }
 
+        [AllowAnonymous]
         [HttpPost("LoginUser")]
         public IActionResult Login(Login loginUser)
         {
             var userAvailable = _userContext.Users.Where(x=>x.Email == loginUser.Email && x.Password == loginUser.Password).FirstOrDefault();
             if(userAvailable != null)
             {
-                return Ok("Success");
+                return Ok(new JWTService(_config).GenerateToken(userAvailable));
             }
             return Ok("Failed");
         }
+
+        [HttpGet]
+        public IActionResult GetAllUser()
+        {
+            return Ok(_userContext.Users.ToList<User>());
+        }
+
+
+        [HttpGet("UserId")]
+        public IActionResult GetUserById(int? _id)
+        {
+            return Ok(_userContext.Users.Where(x => x.UserID == _id).FirstOrDefault());
+        }
+
+        [HttpGet("UserEmail")]
+        public IActionResult GetUserByEmail(string email)
+        {
+            var result = _userContext.Users.Where(x => x.Email == email).FirstOrDefault();
+            if (result != null)
+                return Ok(result);
+            else
+                return Ok("Email does not exists!");
+        }
+
     }
 }
